@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'color_schemes.dart';
 import 'screens/screens.dart';
 import 'states_provider.dart';
 
 void main() async {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(
     ChangeNotifierProvider<StateProvider>(
       create: (context) => StateProvider()
         ..initializeTheme()
-        ..initialize(),
+        ..initializeTasks(),
       child: const MyApp(),
     ),
   );
+  FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
@@ -41,16 +45,18 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: lightColorScheme,
         cardColor: Colors.white,
+        fontFamily: "Rubik",
       ),
       darkTheme: ThemeData(
         useMaterial3: true,
         colorScheme: darkColorScheme,
         cardColor: Colors.black26,
+        fontFamily: "Rubik",
       ),
       themeMode: state.themeMode,
-      home: const SplashScreen(nextRouteName: "/home"),
+      initialRoute: "/",
       routes: {
-        "/home": (ctx) => const HomeScreen(),
+        "/": (ctx) => const HomeScreen(),
         "/create": (ctx) => const CreateTask(),
         "/task": (ctx) => const TaskDetails()
       },

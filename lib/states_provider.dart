@@ -176,17 +176,18 @@ class StateProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  initialize() async {
+  initializeTasks() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    // _themeMode = prefs.getString(modeKey) ?? "light";
     final String? storeTask = prefs.getString(taskKey);
     final List<dynamic> tasks = storeTask != null ? jsonDecode(storeTask) : [];
+
 
     _tasks = tasks
         .map(
           (e) => Task(
-            id: e["id"],
+            id: e["id"].toString(),
             title: e["title"],
+            description: e["description"],
             subtasks: (e["subtasks"] as List<dynamic>)
                 .map(
                   (s) => Subtask(

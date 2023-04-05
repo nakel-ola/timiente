@@ -38,22 +38,22 @@ class TaskList extends StatelessWidget {
             ),
           )
         : Center(
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Image.asset("assets/no-data-pana.png"),
-              Positioned(
-                bottom: 30.0,
-                child: Text(
-                  searchText.isNotEmpty
-                      ? "No tasks founded "
-                      : "No tasks yet!",
-                  style: const TextStyle(fontSize: 24.0),
-                ),
-              )
-            ],
-          ),
-        );
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset("assets/no-data-pana.png"),
+                Positioned(
+                  bottom: 30.0,
+                  child: Text(
+                    searchText.isNotEmpty
+                        ? "No tasks founded "
+                        : "No tasks yet!",
+                    style: const TextStyle(fontSize: 24.0),
+                  ),
+                )
+              ],
+            ),
+          );
   }
 }
 
@@ -88,6 +88,8 @@ class _TaskTile extends StatelessWidget {
 
     int percentage = (progress * 100).round();
 
+    final ThemeData theme = Theme.of(context);
+
     final double width = Responsive.isDesktop(context)
         ? 300
         : Responsive.isTablet(context)
@@ -100,7 +102,7 @@ class _TaskTile extends StatelessWidget {
         margin: const EdgeInsets.symmetric(vertical: 8.0),
         padding: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 12.0),
         decoration: BoxDecoration(
-          color: Theme.of(context).cardColor,
+          color: theme.cardColor,
           borderRadius: BorderRadius.circular(10),
         ),
         width: width,
@@ -109,13 +111,14 @@ class _TaskTile extends StatelessWidget {
           children: [
             Text(
               title,
-              style:
-                  const TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
+              style: theme.textTheme.bodyLarge?.copyWith(fontSize: 18.0),
             ),
+            const SizedBox(height: 4.0),
             Text(
               DateFormat("EEEE, d MMMM yyyy").format(parseDate),
-              style:
-                  TextStyle(color: Theme.of(context).hintColor, fontSize: 16.0),
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: theme.hintColor,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -126,7 +129,7 @@ class _TaskTile extends StatelessWidget {
                   Text(
                     "$percentage%",
                     style: TextStyle(
-                      color: Theme.of(context).hintColor,
+                      color: theme.hintColor,
                       fontSize: 16.0,
                     ),
                   )

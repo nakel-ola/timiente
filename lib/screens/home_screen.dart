@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String _searchText = "";
+
   @override
   Widget build(BuildContext context) {
     final List<Task> tasks = context.watch<StateProvider>().tasks(_searchText);

@@ -34,7 +34,10 @@ class CustomAppBar extends StatelessWidget {
     }
 
     return AppBar(
-      title: Text("Timiente", style: Theme.of(context).textTheme.titleLarge),
+      title: Text(
+        "Timiente",
+        style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 28.0),
+      ),
       actions: [
         if (!Responsive.isMobile(context))
           SizedBox(

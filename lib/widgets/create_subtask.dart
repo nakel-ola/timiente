@@ -128,7 +128,7 @@ class _TaskTile extends StatelessWidget {
               Text(
                 title,
                 style: const TextStyle(
-                  fontSize: 18.0,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.w400,
                 ),
               ),

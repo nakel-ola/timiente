@@ -17,8 +17,8 @@ class _CreateTaskState extends State<CreateTask> {
   String title = "";
   String description = "";
   List<Subtask> subtasks = [];
-  String? date;
-  String? time;
+  String date = "";
+  String time = "";
 
   _onCreate() {
     Task task = Task(
@@ -26,8 +26,8 @@ class _CreateTaskState extends State<CreateTask> {
       title: title,
       description: description,
       subtasks: subtasks,
-      date: date!,
-      time: time!,
+      date: date,
+      time: time,
     );
 
     Provider.of<StateProvider>(context, listen: false).createTask(task);
@@ -37,8 +37,8 @@ class _CreateTaskState extends State<CreateTask> {
   bool disabled() {
     if (title.isNotEmpty &&
         subtasks.isNotEmpty &&
-        date != null &&
-        time != null) {
+        date.isNotEmpty &&
+        time.isNotEmpty) {
       return false;
     }
 
@@ -68,7 +68,8 @@ class _CreateTaskState extends State<CreateTask> {
             : double.infinity;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Create new task"),
+        title: Text("Create new task",
+            style: Theme.of(context).textTheme.titleLarge),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

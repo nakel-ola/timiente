@@ -43,7 +43,7 @@ class _CreateSubtaskTileState extends State<CreateSubtaskTile> {
         ElevatedButton(
           onPressed: _text.isNotEmpty ? _handleOnPressed : null,
           style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 14.0),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
               backgroundColor: const Color(0xFFC00014),
               foregroundColor: Colors.white,
               shape: const RoundedRectangleBorder(
